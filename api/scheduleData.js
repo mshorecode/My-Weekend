@@ -2,8 +2,8 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getScheduleChange = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/schedule.json`, {
+const getScheduleChange = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/schedule.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
