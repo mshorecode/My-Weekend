@@ -6,9 +6,7 @@ import {
   Navbar, Container, Nav, Button,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
-import Logo from '../styles/images/logo.png';
-
-console.warn(Logo);
+// import Logo from '../styles/images/logo.png';
 
 export default function NavBar() {
   return (
@@ -27,7 +25,7 @@ export default function NavBar() {
         </Link>
         <Nav className="me-auto">
           {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-          <Link passHref href="/">
+          <Link passHref href="/schedule">
             <Nav.Link style={{ color: '#fff', fontWeight: '600' }}>Dashboard</Nav.Link>
           </Link>
           <Link passHref href="/">

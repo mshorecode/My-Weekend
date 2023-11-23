@@ -1,27 +1,28 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
+import { getScheduleChange } from '../api/scheduleData';
+import ScheduleOverviewCard from '../components/ScheduleOverviewCard';
 
-function Home() {
+export default function Dashboard() {
+  const [schedules, setSchedules] = useState([]);
   const { user } = useAuth();
 
+  const renderSchedules = () => {
+    getScheduleChange(user.uid).then(setSchedules);
+  };
+
+  useEffect(() => {
+    renderSchedules();
+  }, []);
+
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+    <div className="text-text-center my-4">
+      <h1 id="header">The Shore Family</h1>
+      <div className="d-flex flex-wrap">
+        {schedules.map((schedule) => (
+          <ScheduleOverviewCard key={schedule.firebaseKey} scheduleObj={schedule} onUpdate={renderSchedules} />
+        ))}
+      </div>
     </div>
   );
 }
-
-export default Home;
