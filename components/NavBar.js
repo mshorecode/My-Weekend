@@ -25,7 +25,7 @@ export default function NavBar() {
         </Link>
         <Nav className="me-auto">
           {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-          <Link passHref href="/schedule">
+          <Link passHref href="/dashboard">
             <Nav.Link style={{ color: '#fff', fontWeight: '600' }}>Dashboard</Nav.Link>
           </Link>
           <Link passHref href="/">

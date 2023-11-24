@@ -1,28 +1,26 @@
-import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
-import { getScheduleChange } from '../api/scheduleData';
-import ScheduleOverviewCard from '../components/ScheduleOverviewCard';
 
-export default function Dashboard() {
-  const [schedules, setSchedules] = useState([]);
+function Home() {
   const { user } = useAuth();
 
-  const renderSchedules = () => {
-    getScheduleChange(user.uid).then(setSchedules);
-  };
-
-  useEffect(() => {
-    renderSchedules();
-  }, []);
-
   return (
-    <div className="text-text-center my-4">
-      <h1 id="header">The Shore Family</h1>
-      <div className="d-flex flex-wrap">
-        {schedules.map((schedule) => (
-          <ScheduleOverviewCard key={schedule.firebaseKey} scheduleObj={schedule} onUpdate={renderSchedules} />
-        ))}
-      </div>
+    <div
+      className="text-center d-flex flex-column justify-content-center align-content-center"
+      style={{
+        height: '90vh',
+        padding: '30px',
+        maxWidth: '500px',
+        margin: '0 auto',
+      }}
+    >
+      <h1>Hello {user.displayName}! </h1>
+      <p>Click the button below to create a family!</p>
+      <Button type="button" size="sm" className="copy-btn">
+        Create Family
+      </Button>
     </div>
   );
 }
+
+export default Home;

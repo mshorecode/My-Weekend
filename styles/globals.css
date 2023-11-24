@@ -20,3 +20,21 @@ a {
 body {
   background-color: #fff;
 }
+
+#schedule-overview {
+  width: 400px;
+  height: 600px;
+  margin: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.301);
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.400);
+
+}
+
+#change-title {
+  margin: 8px 8px 0 8px;
+}
+
+#start, #end {
+  margin: 0 4px;
+  font-weight: 600;
+}
