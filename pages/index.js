@@ -16,7 +16,14 @@ function Home() {
     >
       <h1>Hello {user.displayName}! </h1>
       <p>Click the button below to create a family!</p>
-      <Button type="button" size="sm" className="copy-btn">
+      <Button
+        type="button"
+        size="sm"
+        className="copy-btn"
+        style={{
+          background: 'none', color: 'black', fontWeight: '600', border: 'none',
+        }}
+      >
         Create Family
       </Button>
     </div>
