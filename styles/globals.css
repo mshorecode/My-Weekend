@@ -18,5 +18,34 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: #fff;
+}
+
+#schedule-overview, #payment-overview {
+  width: 400px;
+  height: 600px;
+  margin: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.301);
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.400);
+
+}
+
+#change-title {
+  margin: 8px 8px 0 8px;
+}
+
+#start, #end {
+  margin: 0 4px;
+  font-weight: 600;
+}
+
+#overview-container {
+  justify-content: center;
+  gap: 15rem;
+  margin-top: 30px;
+}
+
+#header {
+  text-align: center;
+  margin: 30px 0;
 }

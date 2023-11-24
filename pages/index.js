@@ -1,5 +1,4 @@
 import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -11,14 +10,21 @@ function Home() {
       style={{
         height: '90vh',
         padding: '30px',
-        maxWidth: '400px',
+        maxWidth: '500px',
         margin: '0 auto',
       }}
     >
       <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
+      <p>Click the button below to create a family!</p>
+      <Button
+        type="button"
+        size="sm"
+        className="copy-btn"
+        style={{
+          background: 'none', color: 'black', fontWeight: '600', border: 'none',
+        }}
+      >
+        Create Family
       </Button>
     </div>
   );
