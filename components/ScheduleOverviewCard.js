@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
 
 export default function ScheduleOverviewCard({ scheduleObj }) {
   return (
-    <div className="card" style={{ width: '22rem', margin: '10px auto' }}>
-      <div className="card-body">
-        <h5 className="card-title">{scheduleObj.title}</h5>
-        <h6 className="card-subtitle mb-2 text-muted">{scheduleObj.startDate} to {scheduleObj.endDate}</h6>
-        <p className="card-text">{scheduleObj.changeReason}</p>
-      </div>
+    <div className="mt-2 mb-3">
+      <Card style={{ width: '22rem', margin: '0 auto' }}>
+        <Card.Body className="border-white">
+          <Card.Title className="fw-semibold mb-3">{scheduleObj.title}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted fw-bolder">{scheduleObj.startDate} to {scheduleObj.endDate}</Card.Subtitle>
+        </Card.Body>
+      </Card>
     </div>
   );
 }

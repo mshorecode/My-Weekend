@@ -20,6 +20,18 @@ const getPayment = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSinglePayment = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/payments/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const createPayment = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/payment.json`, {
     method: 'POST',
@@ -60,6 +72,7 @@ const deletePayment = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getPayment,
+  getSinglePayment,
   createPayment,
   updatePayment,
   deletePayment,
