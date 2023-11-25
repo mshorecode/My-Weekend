@@ -20,6 +20,18 @@ const getScheduleChange = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleSchedule = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/schedule/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const createScheduleChange = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/schedule.json`, {
     method: 'POST',
@@ -60,6 +72,7 @@ const deleteScheduleChange = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getScheduleChange,
+  getSingleSchedule,
   createScheduleChange,
   updateScheduleChange,
   deleteScheduleChange,

@@ -26,7 +26,7 @@ export default function Dashboard() {
 
   return (
     <div className="my-4">
-      <h1 id="header">The Shore Family</h1>
+      <h1 className="header">The Shore Family</h1>
       <div className="d-flex flex-wrap" id="overview-container">
         <Card id="schedule-overview">
           <h3 className="text-center m-3" style={{ fontWeight: '600' }}>
@@ -37,7 +37,7 @@ export default function Dashboard() {
               <ScheduleOverviewCard key={schedule.firebaseKey} scheduleObj={schedule} />
             ))}
           </div>
-          <Button style={{ width: '12rem', margin: '0 auto' }}>
+          <Button style={{ width: '12rem', margin: '0 auto' }} href="/schedule/new">
             New Request
           </Button>
         </Card>
@@ -50,7 +50,7 @@ export default function Dashboard() {
               <PaymentOverviewCard key={payment.firebaseKey} paymentObj={payment} />
             ))}
           </div>
-          <Button style={{ width: '12rem', margin: '0 auto' }}>
+          <Button style={{ width: '12rem', margin: '0 auto' }} href="/payments/new">
             New Request
           </Button>
         </Card>
