@@ -17,8 +17,6 @@ export default function PaymentForm({ paymentObj }) {
   const router = useRouter();
   const { user } = useAuth();
 
-  console.warn(paymentObj);
-
   useEffect(() => {
     if (paymentObj.firebaseKey) setFormInput(paymentObj);
   }, [paymentObj, user]);
