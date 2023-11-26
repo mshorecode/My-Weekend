@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { GoTrash, GoPencil } from 'react-icons/go';
 import { deleteScheduleChange } from '../api/scheduleData';
 
 export default function ScheduleCard({ scheduleObj, onUpdate }) {
@@ -21,8 +23,12 @@ export default function ScheduleCard({ scheduleObj, onUpdate }) {
         <Card.Text>
           {scheduleObj.changeReason}
         </Card.Text>
-        <Card.Link href={`/schedule/edit/${scheduleObj.firebaseKey}`}>Update</Card.Link>
-        <Card.Link onClick={deleteScheduleEvent}>Delete</Card.Link>
+        <Card.Link href={`/schedule/edit/${scheduleObj.firebaseKey}`}>
+          <GoPencil style={{ color: 'green' }} />
+        </Card.Link>
+        <Card.Link onClick={deleteScheduleEvent}>
+          <GoTrash style={{ color: 'red' }} />
+        </Card.Link>
       </Card.Body>
     </Card>
   );
