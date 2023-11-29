@@ -21,7 +21,7 @@ const getPayment = () => new Promise((resolve, reject) => {
 });
 
 const getSinglePayment = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/payments/${firebaseKey}.json`, {
+  fetch(`${endpoint}/payment/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
