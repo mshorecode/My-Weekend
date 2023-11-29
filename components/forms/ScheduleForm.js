@@ -120,6 +120,7 @@ export default function ScheduleForm({ scheduleObj }) {
 
 ScheduleForm.propTypes = {
   scheduleObj: PropTypes.shape({
+    householdId: PropTypes.string,
     title: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
