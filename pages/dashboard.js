@@ -5,10 +5,12 @@ import { getScheduleChange } from '../api/scheduleData';
 import ScheduleOverviewCard from '../components/ScheduleOverviewCard';
 import { getPayment } from '../api/paymentData';
 import PaymentOverviewCard from '../components/PaymentOverviewCard';
+import { getHousehold } from '../api/householdData';
 
 export default function Dashboard() {
   const [schedules, setSchedules] = useState([]);
   const [payments, setPayments] = useState([]);
+  const [household, setHousehold] = useState([]);
   const { user } = useAuth();
 
   const renderSchedules = () => {
@@ -19,14 +21,24 @@ export default function Dashboard() {
     getPayment(user.uid).then(setPayments);
   };
 
+  const renderHousehold = () => {
+    getHousehold(user.uid).then(setHousehold);
+  };
+
   useEffect(() => {
+    renderHousehold();
     renderSchedules();
     renderPayments();
   }, []);
 
+  if (household.length === 0) {
+    return (<h1>Loading...</h1>);
+  }
+
   return (
     <div className="my-4">
-      <h1 className="header">The Shore Family</h1>
+      <h1 className="header">The {household[0].familyName} Family
+      </h1>
       <div className="d-flex flex-wrap" id="overview-container">
         <Card id="schedule-overview">
           <h3 className="text-center m-3" style={{ fontWeight: '600' }}>

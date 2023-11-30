@@ -23,6 +23,7 @@ function Home() {
         style={{
           background: 'none', color: 'black', fontWeight: '600', border: 'none',
         }}
+        href="/household/new"
       >
         Create Family
       </Button>

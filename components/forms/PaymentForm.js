@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createPayment, updatePayment } from '../../api/paymentData';
+import { getHousehold } from '../../api/householdData';
 
 const initialState = {
   title: '',
@@ -14,11 +15,17 @@ const initialState = {
 
 export default function PaymentForm({ paymentObj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [household, setHousehold] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
+  const getMyHousehold = () => {
+    getHousehold(user.uid).then(setHousehold);
+  };
+
   useEffect(() => {
     if (paymentObj.firebaseKey) setFormInput(paymentObj);
+    getMyHousehold();
   }, [paymentObj, user]);
 
   const handleChange = (e) => {
@@ -34,7 +41,7 @@ export default function PaymentForm({ paymentObj }) {
     if (paymentObj.firebaseKey) {
       updatePayment(formInput).then(() => router.push('/payments'));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, uid: user.uid, householdId: household[0].firebaseKey };
       createPayment(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updatePayment(patchPayload).then(() => {

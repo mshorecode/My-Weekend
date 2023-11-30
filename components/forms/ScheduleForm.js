@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createScheduleChange, updateScheduleChange } from '../../api/scheduleData';
+import { getHousehold } from '../../api/householdData';
 
 const initialState = {
   title: '',
@@ -14,11 +15,17 @@ const initialState = {
 
 export default function ScheduleForm({ scheduleObj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [household, setHousehold] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
+  const getMyHousehold = () => {
+    getHousehold(user.uid).then(setHousehold);
+  };
+
   useEffect(() => {
     if (scheduleObj.firebaseKey) setFormInput(scheduleObj);
+    getMyHousehold();
   }, [scheduleObj, user]);
 
   const handleChange = (e) => {
@@ -34,7 +41,7 @@ export default function ScheduleForm({ scheduleObj }) {
     if (scheduleObj.firebaseKey) {
       updateScheduleChange(formInput).then(() => router.push('/schedule'));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, uid: user.uid, householdId: household[0].firebaseKey };
       createScheduleChange(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateScheduleChange(patchPayload).then(() => {
