@@ -2,15 +2,21 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getSingleHousehold = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/household/${firebaseKey}.json`, {
+const getHousehold = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/household.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
@@ -41,7 +47,7 @@ const updateHousehold = (payload) => new Promise((resolve, reject) => {
 });
 
 export {
-  getSingleHousehold,
+  getHousehold,
   createHousehold,
   updateHousehold,
 };
