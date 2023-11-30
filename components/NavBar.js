@@ -13,7 +13,7 @@ console.warn(Logo);
 
 export default function NavBar() {
   return (
-    <Navbar collapseOnSelect expand="lg" style={{ background: '#05014a' }}>
+    <Navbar collapseOnSelect expand="lg" className="sticky-top" style={{ background: '#05014a' }}>
       <Container>
         <Link passHref href="/">
           <Navbar.Brand style={{ color: '#fff', fontWeight: '600' }}>
@@ -28,13 +28,13 @@ export default function NavBar() {
         </Link>
         <Nav className="me-auto">
           {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-          <Link passHref href="/">
+          <Link passHref href="/dashboard">
             <Nav.Link style={{ color: '#fff', fontWeight: '600' }}>Dashboard</Nav.Link>
           </Link>
-          <Link passHref href="/">
+          <Link passHref href="/schedule">
             <Nav.Link style={{ color: '#fff', fontWeight: '600' }}>Schedule</Nav.Link>
           </Link>
-          <Link passHref href="/">
+          <Link passHref href="/payments">
             <Nav.Link style={{ color: '#fff', fontWeight: '600' }}>Payments</Nav.Link>
           </Link>
         </Nav>

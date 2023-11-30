@@ -2,8 +2,8 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getScheduleChange = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/schedule.json`, {
+const getScheduleChange = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/schedule.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -17,6 +17,18 @@ const getScheduleChange = () => new Promise((resolve, reject) => {
         resolve([]);
       }
     })
+    .catch(reject);
+});
+
+const getSingleSchedule = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/schedule/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -60,6 +72,7 @@ const deleteScheduleChange = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getScheduleChange,
+  getSingleSchedule,
   createScheduleChange,
   updateScheduleChange,
   deleteScheduleChange,

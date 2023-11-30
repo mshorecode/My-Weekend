@@ -2,8 +2,8 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getPayment = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/payment.json`, {
+const getPayment = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/payment.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -17,6 +17,18 @@ const getPayment = () => new Promise((resolve, reject) => {
         resolve([]);
       }
     })
+    .catch(reject);
+});
+
+const getSinglePayment = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/payment/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -60,6 +72,7 @@ const deletePayment = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getPayment,
+  getSinglePayment,
   createPayment,
   updatePayment,
   deletePayment,
