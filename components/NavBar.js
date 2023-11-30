@@ -5,8 +5,9 @@ import Link from 'next/link';
 import {
   Navbar, Container, Nav, Button,
 } from 'react-bootstrap';
+import Image from 'next/image';
 import { signOut } from '../utils/auth';
-// import Logo from '../styles/images/logo.png';
+import Logo from '../styles/logo.png';
 
 export default function NavBar() {
   return (
@@ -14,13 +15,13 @@ export default function NavBar() {
       <Container>
         <Link passHref href="/">
           <Navbar.Brand style={{ color: '#fff', fontWeight: '600' }}>
-            My Weekend
-            {/* <img
-              src={Logo}
-              width="100"
-              height="50"
-              alt="Brand logo"
-            /> */}
+            <div style={{ width: '150px', height: 'auto' }}>
+              <Image
+                src={Logo}
+                style={{ objectFit: 'contain' }}
+                alt="logo"
+              />
+            </div>
           </Navbar.Brand>
         </Link>
         <Nav className="me-auto">
