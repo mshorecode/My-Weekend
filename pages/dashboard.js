@@ -32,7 +32,19 @@ export default function Dashboard() {
   }, []);
 
   if (household.length === 0) {
-    return (<h1>Loading...</h1>);
+    return (
+      <div
+        className="text-center d-flex flex-column justify-content-center align-content-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '800px',
+          margin: '0 auto',
+        }}
+      >
+        <h1>Loading...</h1>
+      </div>
+    );
   }
 
   return (
@@ -44,27 +56,27 @@ export default function Dashboard() {
           <h3 className="text-center m-3" style={{ fontWeight: '600' }}>
             Schedule Changes
           </h3>
+          <Button style={{ width: '12rem', margin: '0 auto' }} href="/schedule/new">
+            New Request
+          </Button>
           <div>
             {schedules.slice(0, 3).map((schedule) => (
               <ScheduleOverviewCard key={schedule.firebaseKey} scheduleObj={schedule} />
             ))}
           </div>
-          <Button style={{ width: '12rem', margin: '0 auto' }} href="/schedule/new">
-            New Request
-          </Button>
         </Card>
         <Card id="payment-overview">
           <h3 className="text-center m-3" style={{ fontWeight: '600' }}>
             Payment Requests
           </h3>
+          <Button style={{ width: '12rem', margin: '0 auto' }} href="/payments/new">
+            New Request
+          </Button>
           <div>
             {payments.slice(0, 3).map((payment) => (
               <PaymentOverviewCard key={payment.firebaseKey} paymentObj={payment} />
             ))}
           </div>
-          <Button style={{ width: '12rem', margin: '0 auto' }} href="/payments/new">
-            New Request
-          </Button>
         </Card>
       </div>
     </div>

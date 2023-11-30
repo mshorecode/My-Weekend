@@ -9,8 +9,6 @@ import Image from 'next/image';
 import { signOut } from '../utils/auth';
 import Logo from '../styles/logo.png';
 
-console.warn(Logo);
-
 export default function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" className="sticky-top" style={{ background: '#05014a' }}>
