@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
 
 export default function PaymentOverviewCard({ paymentObj }) {
+  const adjustedPayment = paymentObj.amount / 2;
+
   return (
-    <div className="card" style={{ width: '22rem', margin: '10px auto' }}>
-      <div className="card-body">
-        <h5 className="card-title">{paymentObj.title}</h5>
-        <h6 className="card-subtitle mb-2 text-muted">${paymentObj.amount}</h6>
-        <p className="card-text">{paymentObj.payReason}</p>
-      </div>
+    <div className="mt-2 mb-3">
+      <Card style={{ width: '22rem', margin: '0 auto' }}>
+        <Card.Body className="border-white">
+          <Card.Title className="fw-semibold mb-3">{paymentObj.title}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted fw-bolder">${adjustedPayment}</Card.Subtitle>
+        </Card.Body>
+      </Card>
     </div>
   );
 }

@@ -18,7 +18,7 @@ export default function Schedule() {
   return (
     <>
       <h1 className="text-center header">Schedule Changes</h1>
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap card-container">
         {schedules.map((schedule) => (
           <ScheduleCard key={schedule.firebaseKey} scheduleObj={schedule} onUpdate={renderSchedules} />
         ))}
