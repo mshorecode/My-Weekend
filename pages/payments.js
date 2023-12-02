@@ -18,7 +18,7 @@ export default function Payments() {
   return (
     <>
       <h1 className="text-center header">Payments</h1>
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap card-container">
         {payments.map((payment) => (
           <PaymentCard key={payment.firebaseKey} paymentObj={payment} onUpdate={renderPayments} />
         ))}

@@ -12,6 +12,8 @@ export default function PaymentCard({ paymentObj, onUpdate }) {
     }
   };
 
+  const adjustedPayment = paymentObj.amount / 2;
+
   return (
     <Card style={{
       width: '18rem', height: '18rem', border: '1px solid gray', boxShadow: '4px 4px 2px gray',
@@ -19,7 +21,7 @@ export default function PaymentCard({ paymentObj, onUpdate }) {
     >
       <Card.Body>
         <Card.Title>{paymentObj.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">${paymentObj.amount}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">${adjustedPayment}</Card.Subtitle>
         <Card.Text>
           {paymentObj.payReason}
         </Card.Text>
