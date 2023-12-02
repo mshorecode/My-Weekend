@@ -60,7 +60,7 @@ export default function Dashboard() {
             New Request
           </Button>
           <div>
-            {schedules.slice(0, 3).map((schedule) => (
+            {schedules.slice(0, 4).map((schedule) => (
               <ScheduleOverviewCard key={schedule.firebaseKey} scheduleObj={schedule} />
             ))}
           </div>
@@ -73,7 +73,7 @@ export default function Dashboard() {
             New Request
           </Button>
           <div>
-            {payments.slice(0, 3).map((payment) => (
+            {payments.slice(0, 4).map((payment) => (
               <PaymentOverviewCard key={payment.firebaseKey} paymentObj={payment} />
             ))}
           </div>
