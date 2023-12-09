@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  Navbar, Container, Nav, Button,
+  Navbar, Nav, Button,
 } from 'react-bootstrap';
 import Image from 'next/image';
 import { signOut } from '../utils/auth';
@@ -11,19 +11,17 @@ import Logo from '../styles/logo.png';
 
 export default function NavBar() {
   return (
-    <Navbar collapseOnSelect expand="lg" className="sticky-top" style={{ background: '#05014a' }}>
-      <Container>
-        <Link passHref href="/">
-          <Navbar.Brand style={{ color: '#fff', fontWeight: '600' }}>
-            <div style={{ width: '150px', height: 'auto' }}>
-              <Image
-                src={Logo}
-                style={{ objectFit: 'contain' }}
-                alt="logo"
-              />
-            </div>
-          </Navbar.Brand>
-        </Link>
+    <>
+      <Navbar collapseOnSelect expand="lg" className="sticky-top" style={{ background: '#05014a' }}>
+        <Navbar.Brand style={{ color: '#fff', fontWeight: '600' }}>
+          <div style={{ width: '80px', height: 'auto' }}>
+            <Image
+              src={Logo}
+              style={{ objectFit: 'contain' }}
+              alt="logo"
+            />
+          </div>
+        </Navbar.Brand>
         <Nav className="me-auto">
           {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
           <Link passHref href="/dashboard">
@@ -37,7 +35,7 @@ export default function NavBar() {
           </Link>
         </Nav>
         <Button variant="danger" onClick={signOut}>Sign Out</Button>
-      </Container>
-    </Navbar>
+      </Navbar>
+    </>
   );
 }
