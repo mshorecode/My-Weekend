@@ -14,8 +14,8 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" className="sticky-top" style={{ background: '#05014a' }}>
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand style={{ color: '#fff', fontWeight: '600' }}>
-            <div style={{ width: '150px', height: 'auto' }}>
+          <Navbar.Brand className="text-white fw-bold">
+            <div style={{ width: '70px', height: 'auto' }}>
               <Image
                 src={Logo}
                 style={{ objectFit: 'contain' }}

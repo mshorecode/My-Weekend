@@ -1,5 +1,5 @@
-import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import { Button } from '@mui/material';
 import { useAuth } from '../utils/context/authContext';
 import { getHousehold } from '../api/householdData';
 
@@ -41,13 +41,7 @@ function Home() {
       }}
     >
       <h2>Click the button below to create a family!</h2>
-      <Button
-        type="button"
-        size="sm"
-        className="copy-btn"
-        style={{ fontWeight: '600', width: '50%', margin: '10px auto' }}
-        href="/household/new"
-      >
+      <Button variant="contained" className="p-1 w-40 mx-auto my-3" href="/household/new">
         Create Family
       </Button>
     </div>
