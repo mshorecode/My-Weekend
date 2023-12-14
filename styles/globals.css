@@ -37,3 +37,15 @@
   text-align: center;
   margin: 30px 0;
 }
+
+@layer components {
+
+  .sidebar-icon {
+    @apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto bg-gray-700 text-white hover:bg-gray-600;
+  }
+
+  .sidebar-hr {
+    @apply bg-gray-200 border border-gray-200 rounded-full
+    mx-2;
+  }
+}
