@@ -17,6 +17,9 @@ module.exports = {
           200: '#ebedef',
           100: '#f2f3f5',
         },
+        button: {
+          bg: '#E2653F !important',
+        },
       },
     },
   },
