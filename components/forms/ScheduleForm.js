@@ -1,16 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import {
+  Box, Button, Grid, Input, TextField, Typography,
+} from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
 import { createScheduleChange, updateScheduleChange } from '../../api/scheduleData';
 import { getHousehold } from '../../api/householdData';
 
 const initialState = {
   title: '',
+  changeReason: '',
   startDate: '',
   endDate: '',
-  changeReason: '',
 };
 
 export default function ScheduleForm({ scheduleObj }) {
@@ -52,75 +55,88 @@ export default function ScheduleForm({ scheduleObj }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h1 className="text-black mt-5">{scheduleObj.firebaseKey ? 'Update' : 'Add'} Schedule</h1>
+    <div className="flex justify-center mt-[450px]">
+      <Box component="form" onSubmit={handleSubmit}>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <div className="flex flex-row gap-10 justify-center">
+              <Typography variant="h6" className="text-black mt-5">{scheduleObj.firebaseKey ? 'Update' : 'Add'} Schedule Change
+              </Typography>
+            </div>
+          </Grid>
 
-      {/* TITLE INPUT */}
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="Title"
-        className="mb-3"
-      >
-        <Form.Control
-          type="text"
-          placeholder="Enter schedule change title"
-          name="title"
-          value={formInput.title}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+          <Grid item xs={12}>
+            <div className="flex flex-row gap-10 justify-center">
+              <div>
+                {/* TITLE INPUT */}
+                <TextField
+                  type="text"
+                  id="standard-basic"
+                  label="Schedule Change Title"
+                  variant="standard"
+                  name="title"
+                  className="w-[200px]"
+                  value={formInput.title}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-      {/* START DATE */}
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="Start Date"
-        className="mb-3"
-      >
-        <Form.Control
-          type="date"
-          placeholder="Enter change start date"
-          name="startDate"
-          value={formInput.startDate}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+              <div>
+                {/* CHANGE REASON */}
+                <TextField
+                  type="text"
+                  label="Reason"
+                  variant="standard"
+                  className="w-[340px]"
+                  name="changeReason"
+                  value={formInput.changeReason}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-      {/* END DATE */}
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="End Date"
-        className="mb-3"
-      >
-        <Form.Control
-          type="date"
-          placeholder="Enter change start date"
-          name="endDate"
-          value={formInput.endDate}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+            </div>
 
-      {/* CHANGE REASON */}
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="Change Reason"
-        className="mb-3"
-      >
-        <Form.Control
-          type="text"
-          placeholder="Enter change reason"
-          name="changeReason"
-          value={formInput.changeReason}
-          onChange={handleChange}
-        />
-      </FloatingLabel>
+          </Grid>
 
-      {/* SUBMIT BUTTON  */}
-      <Button type="submit">{scheduleObj.firebaseKey ? 'Update' : 'Add'} Schedule</Button>
-    </Form>
+          <Grid item xs={12}>
+            <div className="flex gap-10 w-[580px] mx-auto">
+              {/* DATE PICKER */}
+              <div>
+                <Input
+                  type="date"
+                  name="startDate"
+                  className="w-[270px]"
+                  value={formInput.startDate}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div>
+                <Input
+                  type="date"
+                  name="endDate"
+                  className="w-[270px]"
+                  value={formInput.endDate}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+          </Grid>
+
+          <Grid item xs={12}>
+            {/* SUBMIT BUTTON  */}
+            <div className="flex flex-row gap-10 justify-center">
+              <Button type="submit">{scheduleObj.firebaseKey ? 'Update' : 'Add'} Schedule Change</Button>
+            </div>
+          </Grid>
+        </Grid>
+      </Box>
+    </div>
 
   );
 }

@@ -17,8 +17,8 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user) {
     return (
       <>
-        <SideBar /> {/* NavBar only visible if user is logged in and is in every view */}
-        <div className="container">
+        <SideBar />
+        <div className="w-full">
           <Component {...pageProps} />
         </div>
       </>

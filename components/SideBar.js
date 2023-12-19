@@ -5,7 +5,6 @@ import { FaHouse } from 'react-icons/fa6';
 import { FaMoneyCheckAlt, FaRegCalendarAlt } from 'react-icons/fa';
 import { Avatar } from '@mui/material';
 import Logo from '../styles/logo.png';
-// import { signOut } from '../utils/auth';
 import SideBarIcon from './SideBarIcon';
 import Divider from './Divider';
 import { useAuth } from '../utils/context/authContext';

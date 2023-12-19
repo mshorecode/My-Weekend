@@ -1,7 +1,9 @@
-import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useAuth } from '../utils/context/authContext';
 import { getHousehold } from '../api/householdData';
+import Talking from '../styles/communicate.png';
+import HouseholdForm from '../components/forms/HouseholdForm';
 
 function Home() {
   const [household, setHousehold] = useState([]);
@@ -31,26 +33,18 @@ function Home() {
     );
   }
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '500px',
-        margin: '0 auto',
-      }}
-    >
-      <h2>Click the button below to create a family!</h2>
-      <Button
-        type="button"
-        size="sm"
-        className="copy-btn"
-        style={{ fontWeight: '600', width: '50%', margin: '10px auto' }}
-        href="/household/new"
-      >
-        Create Family
-      </Button>
-    </div>
+    <>
+      <div className="flex flex-row vh-100">
+        <div className="bg-[#fff] w-full">
+          <div className="w-[60%] h-[60%] mx-auto mt-[450px]">
+            <Image alt="communication" src={Talking} className=" rounded-2xl" />
+          </div>
+        </div>
+        <div className="text-center w-full">
+          <HouseholdForm />
+        </div>
+      </div>
+    </>
   );
 }
 
