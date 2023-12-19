@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card, Grid, Typography } from '@mui/material';
 import { useAuth } from '../utils/context/authContext';
 import { getScheduleChange } from '../api/scheduleData';
 import ScheduleOverviewCard from '../components/ScheduleOverviewCard';
@@ -48,37 +48,42 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="my-4">
-      <h1 className="header">The {household[0].familyName} Family
-      </h1>
-      <div className="d-flex flex-wrap" id="overview-container">
-        <Card id="schedule-overview">
-          <h3 className="text-center m-3" style={{ fontWeight: '600' }}>
-            Schedule Changes
-          </h3>
-          <Button style={{ width: '12rem', margin: '0 auto' }} href="/schedule/new">
-            New Request
-          </Button>
-          <div>
-            {schedules.slice(0, 4).map((schedule) => (
-              <ScheduleOverviewCard key={schedule.firebaseKey} scheduleObj={schedule} />
-            ))}
+    <>
+      <Typography variant="h4" sx={{ mt: '40px', textAlign: 'center' }}>
+        The {household[0].familyName} Family
+      </Typography>
+      <div className="flex flex-col vh-100">
+        <Card className="m-4 shadows">
+          <div className="w-full h-full vh-100">
+            <Grid container>
+              <Grid item xs={12} className="mx-4 flex flex-row" />
+              <Typography variant="h4" className="mx-4 my-4">
+                Schedule Overview
+              </Typography>
+              <Grid item className="grid grid-cols-2 gap-5 m-4 w-full">
+                {schedules.toReversed().slice(0, 4).map((schedule) => (
+                  <ScheduleOverviewCard key={schedule.firebaseKey} scheduleObj={schedule} />
+                ))}
+              </Grid>
+            </Grid>
           </div>
         </Card>
-        <Card id="payment-overview">
-          <h3 className="text-center m-3" style={{ fontWeight: '600' }}>
-            Payment Requests
-          </h3>
-          <Button style={{ width: '12rem', margin: '0 auto' }} href="/payments/new">
-            New Request
-          </Button>
-          <div>
-            {payments.slice(0, 4).map((payment) => (
-              <PaymentOverviewCard key={payment.firebaseKey} paymentObj={payment} />
-            ))}
+        <Card className="m-4 shadows">
+          <div className="w-full h-full vh-100">
+            <Grid container>
+              <Grid item xs={12} className="mx-4 flex flex-row" />
+              <Typography variant="h4" className="mx-4 my-4">
+                Payments Overview
+              </Typography>
+              <Grid item className="grid grid-cols-4 gap-5 m-4 w-full">
+                {payments.toReversed().slice(0, 4).map((payment) => (
+                  <PaymentOverviewCard key={payment.firebaseKey} paymentObj={payment} />
+                ))}
+              </Grid>
+            </Grid>
           </div>
         </Card>
       </div>
-    </div>
+    </>
   );
 }

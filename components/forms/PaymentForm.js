@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import {
+  Box, Button, Grid, TextField, Typography,
+} from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
 import { createPayment, updatePayment } from '../../api/paymentData';
 import { getHousehold } from '../../api/householdData';
@@ -41,7 +43,9 @@ export default function PaymentForm({ paymentObj }) {
     if (paymentObj.firebaseKey) {
       updatePayment(formInput).then(() => router.push('/payments'));
     } else {
-      const payload = { ...formInput, uid: user.uid, householdId: household[0].firebaseKey };
+      const payload = {
+        ...formInput, uid: user.uid, householdId: household[0].firebaseKey, dateCreated: new Date(),
+      };
       createPayment(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updatePayment(patchPayload).then(() => {
@@ -52,75 +56,91 @@ export default function PaymentForm({ paymentObj }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h1 className="text-black mt-5">{paymentObj.firebaseKey ? 'Update' : 'Add'} Payment</h1>
+    <div className="flex justify-center mt-[450px]">
+      <Box component="form" onSubmit={handleSubmit}>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <div className="flex flex-row gap-10 justify-center">
+              <Typography variant="h6" className="text-black mt-5">{paymentObj.firebaseKey ? 'Update' : 'Add'} Payment
+              </Typography>
+            </div>
+          </Grid>
 
-      {/* TITLE INPUT */}
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="Title"
-        className="mb-3"
-      >
-        <Form.Control
-          type="text"
-          placeholder="Enter schedule change title"
-          name="title"
-          value={formInput.title}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+          <Grid item xs={12}>
+            <div className="flex flex-row gap-10 justify-center">
+              <div>
+                {/* TITLE INPUT */}
+                <TextField
+                  type="text"
+                  id="standard-basic"
+                  label="Payment Title"
+                  variant="standard"
+                  name="title"
+                  className="w-[200px]"
+                  value={formInput.title}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                {/* AMOUNT */}
+                <TextField
+                  type="number"
+                  label="Amount"
+                  variant="standard"
+                  className="w-[100px]"
+                  name="amount"
+                  value={formInput.amount}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
 
-      {/* AMOUNT */}
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="Amount"
-        className="mb-3"
-      >
-        <Form.Control
-          type="number"
-          placeholder="Enter Total Amount"
-          name="amount"
-          value={formInput.amount}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+          </Grid>
 
-      {/* CHANGE REASON */}
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="Pay Reason"
-        className="mb-3"
-      >
-        <Form.Control
-          type="text"
-          placeholder="Enter pay reason"
-          name="payReason"
-          value={formInput.payReason}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
+          <Grid item xs={12}>
+            <div className="flex flex-row gap-10 justify-center">
+              {/* CHANGE REASON */}
+              <TextField
+                type="text"
+                label="Reason"
+                variant="standard"
+                className="w-[340px]"
+                name="payReason"
+                value={formInput.payReason}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </Grid>
 
-      {/* IMAGE */}
-      <FloatingLabel
-        controlId="floatingInput1"
-        label="Receipts & Bills"
-        className="mb-3"
-      >
-        <Form.Control
-          type="url"
-          placeholder="Upload Receipt or Bill"
-          name="imageUrl"
-          value={formInput.imageUrl}
-          onChange={handleChange}
-        />
-      </FloatingLabel>
+          <Grid item xs={12}>
 
-      {/* SUBMIT BUTTON  */}
-      <Button type="submit">{paymentObj.firebaseKey ? 'Update' : 'Add'} Payment</Button>
-    </Form>
+            {/* IMAGE */}
+            <div className="flex flex-row gap-10 justify-center">
+              <TextField
+                type="url"
+                label="Upload Receipt or Bill"
+                variant="standard"
+                className="w-[340px]"
+                name="imageUrl"
+                value={formInput.imageUrl}
+                onChange={handleChange}
+              />
+            </div>
+
+          </Grid>
+
+          <Grid item xs={12}>
+            {/* SUBMIT BUTTON  */}
+            <div className="flex flex-row gap-10 justify-center">
+              <Button type="submit" className="">{paymentObj.firebaseKey ? 'Update' : 'Add'} Payment</Button>
+            </div>
+          </Grid>
+        </Grid>
+      </Box>
+    </div>
 
   );
 }
