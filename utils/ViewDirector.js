@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
-import SideBar from '../components/Sidebar';
+import SideBar from '../components/SideBar';
 import Signin from '../components/Signin';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
