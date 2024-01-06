@@ -31,7 +31,7 @@ export default function Schedule() {
                   </Link>
                 </div>
               </Grid>
-              <Grid className="grid grid-cols-2 gap-5 m-4 w-full h-[1340px] overflow-scroll">
+              <Grid className="grid grid-cols-2 gap-5 m-4 p-3 w-full h-full overflow-scroll">
                 {schedules.map((schedule) => (
                   <ScheduleCard key={schedule.firebaseKey} scheduleObj={schedule} onUpdate={renderSchedules} />
                 ))}
