@@ -20,7 +20,7 @@ export default function Payments() {
   return (
     <>
       <div className="w-full h-full">
-        <Card className="m-3 shadows">
+        <Card className="m-4 shadows">
           <div className="w-full h-[97vh]">
             <Grid container>
               <Grid item xs={12} className="mx-4 flex flex-row">
@@ -33,7 +33,7 @@ export default function Payments() {
                   </Link>
                 </div>
               </Grid>
-              <Grid item className="grid grid-cols-2 gap-5 m-4 w-full h-[1340px] overflow-scroll">
+              <Grid item className="grid grid-cols-2 gap-5 m-4 p-3 w-full h-full overflow-scroll">
                 {payments.toReversed().map((payment) => (
                   <PaymentCard key={payment.firebaseKey} paymentObj={payment} onUpdate={renderPayments} />
                 ))}

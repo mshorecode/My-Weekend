@@ -33,21 +33,22 @@ export default function PaymentCard({ paymentObj, onUpdate }) {
           color="text.secondary"
         >{paymentObj.title}
         </Typography>
-        <Typography
-          sx={{
-            fontSize: '16px', fontWeight: '500', textShadow: '1px 1px 4px black', color: 'white', padding: '8px 16px 8px 8px',
-          }}
-          color="text.secondary"
-        >{convertedDate()}
-        </Typography>
       </div>
       <CardContent>
-        <Typography className="text-xs" color="text.secondary">Amount Owed:</Typography>
-        <Typography variant="h6" component="div">${adjustedPayment}</Typography>
-        <Typography className="text-xs w-[200px]" color="text.secondary">Reason:</Typography>
-        <Typography className="pr-2 overflow-scroll">
-          {paymentObj.payReason}
-        </Typography>
+        <div className="grid-container gap-[14px]">
+          <div className="flex flex-col grid-item item1">
+            <Typography className="text-xs" color="text.secondary">Amount Owed:</Typography>
+            <Typography className="date-text fw-medium" color="text.primary">${adjustedPayment}</Typography>
+          </div>
+          <div className="flex flex-col grid-item item2">
+            <Typography className="text-xs" color="text.secondary">Payment Date:</Typography>
+            <Typography className="fw-medium date-text" variant="subtitle1" color="text.primary">{convertedDate()}</Typography>
+          </div>
+          <div className="flex flex-col grid-item item3">
+            <Typography className="text-xs" color="text.secondary">Reason:</Typography>
+            <Typography className="fs-6 fw-medium overflow-scroll">{paymentObj.payReason}</Typography>
+          </div>
+        </div>
       </CardContent>
       <div className="flex justify-end last:mt-auto">
         <CardActions>
@@ -68,7 +69,6 @@ PaymentCard.propTypes = {
     title: PropTypes.string,
     amount: PropTypes.string,
     payReason: PropTypes.string,
-    imageUrl: PropTypes.string,
     firebaseKey: PropTypes.string,
     dateCreated: PropTypes.string,
   }).isRequired,
