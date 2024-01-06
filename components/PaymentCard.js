@@ -44,7 +44,7 @@ export default function PaymentCard({ paymentObj, onUpdate }) {
       <CardContent>
         <Typography className="text-xs" color="text.secondary">Amount Owed:</Typography>
         <Typography variant="h6" component="div">${adjustedPayment}</Typography>
-        <Typography className="text-xs" color="text.secondary">Reason:</Typography>
+        <Typography className="text-xs w-[200px]" color="text.secondary">Reason:</Typography>
         <Typography className="pr-2 overflow-scroll">
           {paymentObj.payReason}
         </Typography>

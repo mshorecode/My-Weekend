@@ -12,7 +12,6 @@ const initialState = {
   title: '',
   amount: '',
   payReason: '',
-  imageUrl: '',
 };
 
 export default function PaymentForm({ paymentObj }) {
@@ -86,6 +85,7 @@ export default function PaymentForm({ paymentObj }) {
                 {/* AMOUNT */}
                 <TextField
                   type="number"
+                  min="0"
                   label="Amount"
                   variant="standard"
                   className="w-[100px]"
@@ -115,9 +115,9 @@ export default function PaymentForm({ paymentObj }) {
             </div>
           </Grid>
 
-          <Grid item xs={12}>
+          {/* TODO: Finish up image upload and displaying */}
+          {/* <Grid item xs={12}>
 
-            {/* IMAGE */}
             <div className="flex flex-row gap-10 justify-center">
               <TextField
                 type="url"
@@ -130,7 +130,7 @@ export default function PaymentForm({ paymentObj }) {
               />
             </div>
 
-          </Grid>
+          </Grid> */}
 
           <Grid item xs={12}>
             {/* SUBMIT BUTTON  */}

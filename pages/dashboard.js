@@ -60,7 +60,7 @@ export default function Dashboard() {
               <Typography variant="h4" className="mx-4 my-4">
                 Schedule Overview
               </Typography>
-              <Grid item className="grid grid-cols-2 gap-5 m-4 w-full">
+              <Grid item className="grid grid-cols-2 gap-3 m-4 w-full">
                 {schedules.toReversed().slice(0, 4).map((schedule) => (
                   <ScheduleOverviewCard key={schedule.firebaseKey} scheduleObj={schedule} />
                 ))}

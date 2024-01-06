@@ -16,20 +16,37 @@ export default function ScheduleCard({ scheduleObj, onUpdate }) {
     }
   };
 
-  function convertedStart() {
+  function originalConvertedStart() {
     return (
-      moment(scheduleObj.startDate).format('MMM Do YYYY')
+      moment(scheduleObj.originalStartDate).format('MMM Do YYYY')
     );
   }
 
-  function convertedEnd() {
+  function originalConvertedEnd() {
     return (
-      moment(scheduleObj.endDate).format('MMM Do YYYY')
+      moment(scheduleObj.originalEndDate).format('MMM Do YYYY')
     );
   }
+
+  function proposedConvertedStart() {
+    return (
+      moment(scheduleObj.proposedStartDate).format('MMM Do YYYY')
+    );
+  }
+
+  function proposedConvertedEnd() {
+    return (
+      moment(scheduleObj.proposedEndDate).format('MMM Do YYYY')
+    );
+  }
+
+  const originalStart = originalConvertedStart();
+  const originalEnd = originalConvertedEnd();
+  const proposedStart = proposedConvertedStart();
+  const proposedEnd = proposedConvertedEnd();
 
   return (
-    <Card className="w-full h-60 shadows flex flex-col">
+    <Card className="w-full h-72 shadows flex flex-col">
       <Typography
         className="bg-[#e39077]"
         sx={{
@@ -39,18 +56,20 @@ export default function ScheduleCard({ scheduleObj, onUpdate }) {
       >{scheduleObj.title}
       </Typography>
       <CardContent>
-        <div className="flex flex-row gap-[88px]">
-          <Typography className="text-xs" color="text.secondary">Original Date:</Typography>
-          <Typography className="text-xs" color="text.secondary">Date Proposed:</Typography>
+        <div className="grid-container gap-[14px]">
+          <div className="flex flex-col grid-item item1">
+            <Typography className="text-xs" color="text.secondary">Original Dates:</Typography>
+            <Typography className="date-text fw-medium" color="text.primary">{originalStart} - {originalEnd}</Typography>
+          </div>
+          <div className="flex flex-col grid-item item2">
+            <Typography className="text-xs" color="text.secondary">Proposed Dates:</Typography>
+            <Typography className="fw-medium date-text" variant="subtitle1" color="text.primary">{proposedStart} - {proposedEnd}</Typography>
+          </div>
+          <div className="flex flex-col grid-item item3">
+            <Typography className="text-xs" color="text.secondary">Reason:</Typography>
+            <Typography className="fs-6 fw-medium overflow-scroll">{scheduleObj.changeReason}</Typography>
+          </div>
         </div>
-        <div className="flex flex-row gap-12">
-          <Typography variant="h6">{convertedStart()}</Typography>
-          <Typography variant="h6">{convertedEnd()}</Typography>
-        </div>
-        <Typography className="text-xs mt-1" color="text.secondary">Reason:</Typography>
-        <Typography>
-          {scheduleObj.changeReason}
-        </Typography>
       </CardContent>
       <div className="flex justify-end last:mt-auto">
         <CardActions>
@@ -70,8 +89,10 @@ ScheduleCard.propTypes = {
   scheduleObj: PropTypes.shape({
     householdId: PropTypes.string,
     title: PropTypes.string,
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
+    originalStartDate: PropTypes.string,
+    originalEndDate: PropTypes.string,
+    proposedStartDate: PropTypes.string,
+    proposedEndDate: PropTypes.string,
     changeReason: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,

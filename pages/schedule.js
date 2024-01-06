@@ -19,10 +19,9 @@ export default function Schedule() {
 
   return (
     <>
-
-      <div className="w-full h-full vh-100">
+      <div className="w-full h-full">
         <Card className="m-4 shadows">
-          <div className="w-full h-full vh-100">
+          <div className="w-full h-[97vh]">
             <Grid container>
               <Grid item xs={12} className="mx-4 flex flex-row">
                 <Typography variant="h4" sx={{ mt: '40px' }}>Schedule Changes</Typography>
@@ -32,7 +31,7 @@ export default function Schedule() {
                   </Link>
                 </div>
               </Grid>
-              <Grid item className="grid grid-cols-1 gap-5 m-4 w-full">
+              <Grid className="grid grid-cols-2 gap-5 m-4 w-full h-[1340px] overflow-scroll">
                 {schedules.map((schedule) => (
                   <ScheduleCard key={schedule.firebaseKey} scheduleObj={schedule} onUpdate={renderSchedules} />
                 ))}
