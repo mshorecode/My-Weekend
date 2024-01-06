@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import {
-  Box, Button, Grid, Input, TextField, Typography,
+  Box, Button, Grid, TextField, Typography,
 } from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
 import { createScheduleChange, updateScheduleChange } from '../../api/scheduleData';
@@ -12,8 +12,10 @@ import { getHousehold } from '../../api/householdData';
 const initialState = {
   title: '',
   changeReason: '',
-  startDate: '',
-  endDate: '',
+  originalStartDate: '',
+  originalEndDate: '',
+  proposedStartDate: '',
+  proposedEndDate: '',
 };
 
 export default function ScheduleForm({ scheduleObj }) {
@@ -104,22 +106,58 @@ export default function ScheduleForm({ scheduleObj }) {
             <div className="flex gap-10 w-[580px] mx-auto">
               {/* DATE PICKER */}
               <div>
-                <Input
+                <TextField
                   type="date"
-                  name="startDate"
+                  variant="standard"
+                  helperText="Select the original start date."
+                  name="originalStartDate"
                   className="w-[270px]"
-                  value={formInput.startDate}
+                  value={formInput.originalStartDate}
                   onChange={handleChange}
                   required
                 />
               </div>
 
               <div>
-                <Input
+                <TextField
                   type="date"
-                  name="endDate"
+                  variant="standard"
+                  helperText="Select the original end date."
+                  name="originalEndDate"
                   className="w-[270px]"
-                  value={formInput.endDate}
+                  value={formInput.originalEndDate}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+          </Grid>
+
+          <Grid item xs={12}>
+            <div className="flex gap-10 w-[580px] mx-auto">
+              {/* DATE PICKER */}
+              <div>
+                <TextField
+                  type="date"
+                  variant="standard"
+                  helperText="Select the proposed start date."
+                  name="proposedStartDate"
+                  className="w-[270px]"
+                  value={formInput.proposedStartDate}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div>
+                <TextField
+                  type="date"
+                  variant="standard"
+                  helperText="Select the proposed end date."
+                  name="proposedEndDate"
+                  className="w-[270px]"
+                  value={formInput.proposedEndDate}
                   onChange={handleChange}
                   required
                 />
@@ -144,7 +182,10 @@ export default function ScheduleForm({ scheduleObj }) {
 ScheduleForm.propTypes = {
   scheduleObj: PropTypes.shape({
     title: PropTypes.string,
-    startDate: PropTypes.string,
+    originalStartDate: PropTypes.string,
+    originalEndDate: PropTypes.string,
+    proposedStartDate: PropTypes.string,
+    proposedEndDate: PropTypes.string,
     endDate: PropTypes.string,
     changeReason: PropTypes.string,
     firebaseKey: PropTypes.string,

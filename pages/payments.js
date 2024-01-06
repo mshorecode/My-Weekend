@@ -19,13 +19,13 @@ export default function Payments() {
 
   return (
     <>
-      <div className="flex flex-col vh-100">
-        <Card className="m-4 shadows">
-          <div className="w-full h-full vh-100">
+      <div className="w-full h-full">
+        <Card className="m-3 shadows">
+          <div className="w-full h-[97vh]">
             <Grid container>
               <Grid item xs={12} className="mx-4 flex flex-row">
-                <Typography variant="h4" sx={{ my: '40px', textAlign: 'center' }}>
-                  Pending Payments
+                <Typography variant="h4" sx={{ mt: '40px' }}>
+                  Payments
                 </Typography>
                 <div className="mt-12 mr-4 text-[#E2653F] last:ml-auto">
                   <Link style={{ width: '12rem', margin: '0 auto' }} href="/payments/new">
@@ -33,24 +33,10 @@ export default function Payments() {
                   </Link>
                 </div>
               </Grid>
-              <Grid item className="grid grid-cols-2 gap-5 m-4 w-full">
+              <Grid item className="grid grid-cols-2 gap-5 m-4 w-full h-[1340px] overflow-scroll">
                 {payments.toReversed().map((payment) => (
                   <PaymentCard key={payment.firebaseKey} paymentObj={payment} onUpdate={renderPayments} />
                 ))}
-              </Grid>
-            </Grid>
-          </div>
-        </Card>
-        <Card className="m-4 shadows">
-          <div className="w-full h-full vh-100">
-            <Grid container>
-              <Grid item xs={12} className="mx-4">
-                <Typography variant="h4" sx={{ my: '40px' }}>
-                  Closed Payments
-                </Typography>
-              </Grid>
-              <Grid item className="flex flex-wrap gap-5 m-4 w-full">
-                <></>
               </Grid>
             </Grid>
           </div>
