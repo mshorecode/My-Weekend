@@ -31,7 +31,7 @@ export default function Dashboard() {
     renderPayments();
   }, []);
 
-  if (household.length === 0) {
+  if (household.length === 1) {
     return (
       <div
         className="text-center d-flex flex-column justify-content-center align-content-center"
